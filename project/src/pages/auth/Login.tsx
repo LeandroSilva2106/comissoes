@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
 import { Eye, EyeOff } from 'lucide-react';
 
@@ -82,9 +82,9 @@ const Login: React.FC = () => {
           
           <div className="mt-1 text-sm text-gray-500">
             <p className="text-right">
-              <Link to="/reset-password" className="text-blue-600 hover:text-blue-800">
+              <a href="#" className="text-blue-600 hover:text-blue-800">
                 Esqueceu sua senha?
-              </Link>
+              </a>
             </p>
           </div>
         </div>
@@ -105,6 +105,12 @@ const Login: React.FC = () => {
           ) : 'Entrar'}
         </button>
       </form>
+      
+      <div className="mt-4 text-sm text-gray-600">
+        <p className="text-center">
+          Para o protótipo, use o email: <span className="font-semibold">ana.silva@unidas.org.br</span> e senha: <span className="font-semibold">123456</span>
+        </p>
+      </div>
     </div>
   );
 };

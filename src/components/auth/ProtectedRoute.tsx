@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
+import { supabase } from '../../lib/supabase';
 
 const ProtectedRoute: React.FC = () => {
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, currentUser } = useAuthStore();
   
-  // For the prototype, we'll auto-authenticate if not authenticated
-  // In a real app, this would redirect to login
-  if (!isAuthenticated) {
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (!session) {
+        useAuthStore.setState({ isAuthenticated: false, currentUser: null });
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+  
+  if (!isAuthenticated || !currentUser) {
     return <Navigate to="/login" replace />;
   }
   

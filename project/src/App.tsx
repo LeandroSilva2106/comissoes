@@ -8,7 +8,6 @@ import AuthLayout from './layouts/AuthLayout';
 
 // Pages
 import Login from './pages/auth/Login';
-import ResetPassword from './pages/auth/ResetPassword';
 import Dashboard from './pages/dashboard/Dashboard';
 import Users from './pages/users/Users';
 import Commissions from './pages/commissions/Commissions';
@@ -30,7 +29,6 @@ function App() {
         {/* Auth Routes */}
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
         </Route>
 
         {/* Protected Routes */}

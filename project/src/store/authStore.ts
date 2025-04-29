@@ -1,6 +1,6 @@
 import { create } from 'zustand';
+import { mockUsers } from '../data/mockData';
 import { User } from '../types';
-import { supabase } from '../lib/supabase';
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -22,39 +22,34 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ isLoading: true, error: null });
     
     try {
-      const { data: { user }, error: signInError } = await supabase.auth.signInWithPassword({
-        email,
-        password
-      });
-
-      if (signInError) throw signInError;
-
-      if (user) {
-        // Fetch additional user data from our users table
-        const { data: userData, error: userError } = await supabase
-          .from('users')
-          .select('*')
-          .eq('id', user.id)
-          .single();
-
-        if (userError) throw userError;
-
+      // Simulate API request
+      await new Promise(resolve => setTimeout(resolve, 800));
+      
+      // In a real app, this would validate against the backend
+      // For the prototype, we'll check against mockUsers
+      const user = mockUsers.find(user => user.email.toLowerCase() === email.toLowerCase());
+      
+      if (user && password === '123456') { // Simple check for prototype
         set({ 
           isAuthenticated: true, 
-          currentUser: userData,
+          currentUser: user,
           isLoading: false 
+        });
+      } else {
+        set({ 
+          isLoading: false,
+          error: 'Credenciais inválidas. Por favor, verifique seu email e senha.' 
         });
       }
     } catch (error) {
       set({ 
         isLoading: false,
-        error: 'Credenciais inválidas. Por favor, verifique seu email e senha.' 
+        error: 'Ocorreu um erro durante o login. Por favor, tente novamente.' 
       });
     }
   },
   
-  logout: async () => {
-    await supabase.auth.signOut();
+  logout: () => {
     set({ 
       isAuthenticated: false,
       currentUser: null 
