@@ -83,7 +83,7 @@ const UserProfile: React.FC = () => {
               }`}
             >
               {user.role === 'admin' ? 'Administrador' : 
-              user.role === 'coordinator' ? 'Coordenador' : 'Visualizador'}
+              user.role === 'coordinator' ? 'Coordenador' : 'Membro'}
             </span>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">

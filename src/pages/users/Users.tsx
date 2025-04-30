@@ -112,7 +112,7 @@ const Users: React.FC = () => {
                         }`}
                       >
                         {user.role === 'admin' ? 'Administrador' : 
-                        user.role === 'coordinator' ? 'Coordenador' : 'Visualizador'}
+                        user.role === 'coordinator' ? 'Coordenador' : 'Membro'}
                       </span>
                     </td>
                     <td>

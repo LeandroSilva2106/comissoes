@@ -22,6 +22,9 @@ import NotFound from './pages/NotFound';
 // Auth Guard
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
+// Página de Teste de Login (adicione essa página em src/pages/LoginTest.tsx)
+import LoginTest from './pages/LoginTest';
+
 function App() {
   return (
     <Router>
@@ -46,6 +49,9 @@ function App() {
             <Route path="/reports" element={<Reports />} />
           </Route>
         </Route>
+
+        {/* Teste de Login - Página Dev */}
+        <Route path="/teste-login" element={<LoginTest />} />
 
         {/* 404 Route */}
         <Route path="*" element={<NotFound />} />

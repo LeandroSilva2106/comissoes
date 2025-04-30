@@ -63,7 +63,7 @@ const DashboardLayout: React.FC = () => {
                 <div className="ml-2 hidden lg:block">
                   <p className="text-sm font-medium text-gray-700">{currentUser?.name}</p>
                   <p className="text-xs text-gray-500">{currentUser?.role === 'admin' ? 'Administrador' : 
-                    currentUser?.role === 'coordinator' ? 'Coordenador' : 'Visualizador'}</p>
+                    currentUser?.role === 'coordinator' ? 'Coordenador' : 'Membro'}</p>
                 </div>
               </div>
             </div>
